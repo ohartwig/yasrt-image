@@ -7,7 +7,7 @@
 # `build`, because container_scanning depends on the image the build produced.
 # `release` leads, so semantic-release cuts the tag on a main push and the tag
 # pipeline then does the actual building.
-stages: [release, fetch, build, test, sign]
+stages: [release, fetch, verify, build, test, sign]
 
 variables:
   # renovate: datasource=gitlab-packages depName=yasrt/cli packageName=yasrt
@@ -46,6 +46,9 @@ include:
       # verify:containerfile needs packages.wolfi.dev, which the general pool
       # cannot reach; az1a is the IPv4-capable pool.
       tags-config: ['az1a']
+      # verify:containerfile really builds the file, so it cannot run in .pre:
+      # the binary is fetched, not vendored, and .pre precedes the fetch.
+      verify-stage: verify
       # arm64 only, like devops/images/golang: the fleet is arm64 and no
       # consumer pulls an amd64 leg.
       platforms: linux/arm64
@@ -60,8 +63,13 @@ include:
 fetch:binary:
   stage: fetch
   image: $CURL_IMAGE
+  # Also on the default branch and on merge requests, not only on tags:
+  # verify:containerfile builds the Containerfile for real and needs the binary
+  # in the context exactly as the tag build does.
   rules:
     - if: $CI_COMMIT_TAG
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
     - when: never
   variables:
     PACKAGE_URL: "${CI_API_V4_URL}/projects/yasrt%2Fcli/packages/generic/yasrt/${YASRT_VERSION}"
@@ -83,6 +91,9 @@ fetch:binary:
   artifacts:
     paths: [dist/]
     expire_in: 1 day
+
+verify:containerfile:$CI_REGISTRY_IMAGE:
+  needs: [fetch:binary]
 
 build:buildkit:image:$CI_REGISTRY_IMAGE:
   needs: [fetch:binary]
