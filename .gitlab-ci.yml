@@ -45,6 +45,14 @@ include:
       # repository that packages the tool written to fix it. golang-image
       # carries the same override for the same reason.
       non-release-paths: '.pre-commit-config.yaml'
+  # Run yasrt beside semantic-release and report where they disagree. Read-only
+  # and non-blocking. This repository is the right first subject: it already
+  # had a release refused for a pipeline-only change, which is exactly the
+  # disagreement the shadow exists to surface.
+  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/release-tools/yasrt-shadow@1
+    inputs:
+      product: image
+
   - component: ${CI_SERVER_HOST}/devops/ci-cd-components/buildkit-image-build/buildkit-image-build@1
     inputs:
       docker_context_path: '.'
