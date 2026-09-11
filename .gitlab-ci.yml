@@ -1,0 +1,98 @@
+# Packages the yasrt binary into a Wolfi image.
+#
+# The binary is built and released by yasrt/cli; this repository only packages
+# it, the same split devops/images/deploy-opkssh uses. The fetch job runs before
+# the build so that dist/ is present in the build context.
+stages: [test, fetch, build, sign, release]
+
+variables:
+  # renovate: datasource=gitlab-packages depName=yasrt/cli packageName=yasrt
+  YASRT_VERSION: "1.0.0"
+  CURL_IMAGE: registry.ole-hartwig.eu/devops/images/curl:8.21
+
+include:
+  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/lint-tools/lint-ci-yaml@1
+    inputs:
+      stage: "test"
+      job-name: "lint:ci-yaml"
+      targets: ".gitlab-ci.yml"
+  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/supply-chain-verify/base-image-pins@2
+  # Bootstrap: this repository still releases itself with semantic-release,
+  # because the component that would replace it needs the image this repository
+  # builds. It migrates to the yasrt component once :1 exists — see
+  # yasrt/cli docs/tasks.md, phase P9.
+  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/release-tools/semantic-release@1
+    inputs:
+      stage: release
+      rules-config:
+        - if: $CI_COMMIT_REF_PROTECTED == "true"
+          changes: [CHANGELOG.md]
+          when: never
+        - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_COMMIT_TAG == null
+        - when: never
+      config-preset: '@moselwal/semantic-release-config'
+      config-preset-group-id: '175'
+      config-preset-scope: 'moselwal'
+  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/buildkit-image-build/buildkit-image-build@1
+    inputs:
+      docker_context_path: '.'
+      container_image_name: $CI_REGISTRY_IMAGE
+      container_image_tag: $CI_COMMIT_TAG
+      containerfile_name: Containerfile
+      # verify:containerfile needs packages.wolfi.dev, which the general pool
+      # cannot reach; az1a is the IPv4-capable pool.
+      tags-config: ['az1a']
+      # arm64 only, like devops/images/golang: the fleet is arm64 and no
+      # consumer pulls an amd64 leg.
+      platforms: linux/arm64
+      # A rolling major tag beside the immutable release tag, so consumers can
+      # ask for "yasrt 1" rather than tracking this repository's own sequence.
+      additional-tags: '1'
+      cosign_enabled: 'false'
+      inherit-signing: 'true'
+      signing-stage: sign
+      inherit-release-check: 'true'
+
+fetch:binary:
+  stage: fetch
+  image: $CURL_IMAGE
+  rules:
+    - if: $CI_COMMIT_TAG
+    - when: never
+  variables:
+    PACKAGE_URL: "${CI_API_V4_URL}/projects/yasrt%2Fcli/packages/generic/yasrt/${YASRT_VERSION}"
+  script:
+    # Cross-project read with the job token; yasrt/cli lists this project on its
+    # job-token allowlist. No long-lived credential is involved.
+    - mkdir -p dist && cd dist
+    - |
+      for f in yasrt-linux-arm64 SHA256SUMS; do
+        curl --fail-with-body --silent --show-error \
+          --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
+          --output "$f" "${PACKAGE_URL}/${f}"
+      done
+    # Verify before packaging: an unverified download is a supply-chain hole,
+    # and the manifest is published alongside the binaries for exactly this.
+    - grep 'yasrt-linux-arm64$' SHA256SUMS > SHA256SUMS.arm64
+    - sha256sum -c SHA256SUMS.arm64
+    - chmod 0755 yasrt-linux-arm64
+  artifacts:
+    paths: [dist/]
+    expire_in: 1 day
+
+build:buildkit:image:$CI_REGISTRY_IMAGE:
+  stage: build
+  needs: [fetch:binary]
+  tags: [az1a]
+  rules:
+    - if: $CI_COMMIT_TAG
+    - when: never
+
+container_scanning:
+  image: registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.34
+  variables:
+    TRIVY_DB_REPOSITORY: registry.ole-hartwig.eu/devops/ci-mirrors/trivy-db
+    TRIVY_JAVA_DB_REPOSITORY: registry.ole-hartwig.eu/devops/ci-mirrors/trivy-java-db
+  rules:
+    - if: $CI_COMMIT_TAG
+    - when: never
