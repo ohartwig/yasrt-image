@@ -5,8 +5,9 @@
 # the build so that dist/ is present in the build context.
 # Stage order follows devops/images/golang: scanning runs in `test` *after*
 # `build`, because container_scanning depends on the image the build produced.
-# `release` leads, so semantic-release cuts the tag on a main push and the tag
-# pipeline then does the actual building.
+# `release` leads because that is where `version` decides; the tag itself is
+# created last, in .post, once the image is built, scanned, signed and
+# verified. There is no tag pipeline: the main pipeline is the release.
 stages: [release, fetch, verify, build, test, sign]
 
 variables:
@@ -28,44 +29,51 @@ include:
       job-name: "lint:ci-yaml"
       targets: ".gitlab-ci.yml"
   - component: ${CI_SERVER_HOST}/devops/ci-cd-components/supply-chain-verify/base-image-pins@2
-  # Bootstrap: this repository still releases itself with semantic-release,
-  # because the component that would replace it needs the image this repository
-  # builds. It migrates to the yasrt component once :1 exists — see
-  # yasrt/cli docs/tasks.md, phase P9.
-  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/release-tools/semantic-release@1
+  # This repository releases itself with the tool it packages -- the first
+  # image repository to do so. `version` decides in the first stage, the
+  # image is fetched, verified, built, scanned, signed and verified on this
+  # same pipeline, and `release` in .post creates the tag and the GitLab
+  # release only after all of that passed. A job-token push starts no
+  # pipeline, so nothing runs twice; there is no tag pipeline any more.
+  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/release-tools/yasrt@1
     inputs:
-      stage: release
+      stage-version: release
+      stage-release: .post
+      product: image
       rules-config:
         - if: $CI_PIPELINE_SOURCE == "schedule"
           when: never
-        - if: $CI_COMMIT_REF_PROTECTED == "true"
-          changes: [CHANGELOG.md]
-          when: never
-        - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_COMMIT_TAG == null
+        - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_COMMIT_TAG == null && $CI_PIPELINE_SOURCE == "push"
         - when: never
-      config-preset: '@moselwal/semantic-release-config'
-      config-preset-group-id: '175'
-      config-preset-scope: 'moselwal'
-      # The component's default non-release-paths contains .gitlab-ci.yml,
-      # which is wrong for an image repository: the pipeline builds the
-      # deliverable. Here it is worse than usual — YASRT_VERSION lives in this
-      # file, so bumping the packaged binary touches nothing else and the
-      # release is refused. That is improvement item I-081 exactly, hit by the
-      # repository that packages the tool written to fix it. golang-image
-      # carries the same override for the same reason.
-      non-release-paths: '.pre-commit-config.yaml'
-  # Run yasrt beside semantic-release and report where they disagree. Read-only
-  # and non-blocking. This repository is the right first subject: it already
-  # had a release refused for a pipeline-only change, which is exactly the
-  # disagreement the shadow exists to surface.
-  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/release-tools/yasrt-shadow@1
-    inputs:
-      product: image
+      release-needs:
+        - job: version
+          artifacts: true
+        - job: build:buildkit:image:$CI_REGISTRY_IMAGE
+          artifacts: false
+        - job: container_scanning:verdict
+          optional: true
+          artifacts: false
+        - job: sign:image
+          optional: true
+          artifacts: false
+        - job: attest:sbom
+          optional: true
+          artifacts: false
+        - job: verify:image-signature:$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+          optional: true
+          artifacts: false
+        - job: verify:release-artifact-exists
+          optional: true
+          artifacts: false
 
-  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/buildkit-image-build/buildkit-image-build@1
+  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/buildkit-image-build/buildkit-image-build@2
     inputs:
+      release-tool: yasrt
       docker_context_path: '.'
       container_image_name: $CI_REGISTRY_IMAGE
+      # Empty on a branch pipeline; the build then takes RELEASE_TAG from the
+      # version job's handshake. A tag pipeline (none is expected any more)
+      # would still use the tag.
       container_image_tag: $CI_COMMIT_TAG
       containerfile_name: Containerfile
       # verify:containerfile needs packages.wolfi.dev, which the general pool
@@ -130,10 +138,17 @@ verify:containerfile:$CI_REGISTRY_IMAGE:
   needs: [fetch:binary]
 
 build:buildkit:image:$CI_REGISTRY_IMAGE:
-  needs: [fetch:binary]
+  # `version` is listed so its dotenv (RELEASE_STATUS, RELEASE_TAG) reaches
+  # this job: a `needs` list restricts artefacts to what it names.
+  needs:
+    - job: fetch:binary
+    - job: version
+      artifacts: true
+      optional: true
   tags: [az1a]
   rules:
     - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
     - when: never
 
 container_scanning:
@@ -143,4 +158,5 @@ container_scanning:
     TRIVY_JAVA_DB_REPOSITORY: registry.ole-hartwig.eu/devops/ci-mirrors/trivy-java-db
   rules:
     - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
     - when: never
