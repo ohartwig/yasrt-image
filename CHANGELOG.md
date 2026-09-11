@@ -1,3 +1,9 @@
+## [1.2.1](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.2.0...1.2.1) (2026-09-11)
+
+### :repeat: Chores
+
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning docker tag to v8.6.35 ([94e5214](https://git.ole-hartwig.eu/devops/images/yasrt/commit/94e521422ea783b04f47264c926cc809c60280fa))
+
 ## [1.2.0](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.1.0...1.2.0) (2026-09-11)
 
 ### :sparkles: Features
