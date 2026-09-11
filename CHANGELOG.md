@@ -1,3 +1,13 @@
+## [1.2.0](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.1.0...1.2.0) (2026-09-11)
+
+### :sparkles: Features
+
+* package yasrt 1.5.0 ([abe1735](https://git.ole-hartwig.eu/devops/images/yasrt/commit/abe1735ce03359a6baa07c087708144897ae6621))
+
+### :repeat: Continuous Integrations
+
+* run the yasrt shadow alongside semantic-release ([2ab50d3](https://git.ole-hartwig.eu/devops/images/yasrt/commit/2ab50d3f2b97e5707a830ebd25861909adbd4ac4))
+
 ## [1.1.0](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.0.0...1.1.0) (2026-09-11)
 
 ### :sparkles: Features
