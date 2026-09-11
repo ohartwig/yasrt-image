@@ -1,3 +1,14 @@
+## [1.1.0](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.0.0...1.1.0) (2026-09-11)
+
+### :sparkles: Features
+
+* package yasrt 1.1.0 ([8ed2799](https://git.ole-hartwig.eu/devops/images/yasrt/commit/8ed2799632a686b937448872ce485ccfd27d4981))
+* package yasrt 1.2.0 ([46ff3a7](https://git.ole-hartwig.eu/devops/images/yasrt/commit/46ff3a7460c7a95f981e7b4bab3c5495a96c322e))
+
+### :bug: Fixes
+
+* **ci:** stop the old chain refusing a binary bump ([2dd81ae](https://git.ole-hartwig.eu/devops/images/yasrt/commit/2dd81aef827de1bd679b1a634806dd28bf086edf))
+
 ## 1.0.0 (2026-09-11)
 
 ### :sparkles: Features
