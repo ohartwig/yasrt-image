@@ -1,3 +1,10 @@
+## [1.3.0](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.2.1...1.3.0) (2026-09-11)
+
+### :sparkles: Features
+
+* **ci:** re-scan the published image daily ([fb6c5be](https://git.ole-hartwig.eu/devops/images/yasrt/commit/fb6c5be7bebe307d08ce23450b99dd0cafae4a4b))
+* package yasrt 1.6.0 ([ee0bb40](https://git.ole-hartwig.eu/devops/images/yasrt/commit/ee0bb405a70df7e1687e1ae03b11d53bba8bd35b))
+
 ## [1.2.1](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.2.0...1.2.1) (2026-09-11)
 
 ### :repeat: Chores
