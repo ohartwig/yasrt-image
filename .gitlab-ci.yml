@@ -3,7 +3,11 @@
 # The binary is built and released by yasrt/cli; this repository only packages
 # it, the same split devops/images/deploy-opkssh uses. The fetch job runs before
 # the build so that dist/ is present in the build context.
-stages: [test, fetch, build, sign, release]
+# Stage order follows devops/images/golang: scanning runs in `test` *after*
+# `build`, because container_scanning depends on the image the build produced.
+# `release` leads, so semantic-release cuts the tag on a main push and the tag
+# pipeline then does the actual building.
+stages: [release, fetch, build, test, sign]
 
 variables:
   # renovate: datasource=gitlab-packages depName=yasrt/cli packageName=yasrt
@@ -81,7 +85,6 @@ fetch:binary:
     expire_in: 1 day
 
 build:buildkit:image:$CI_REGISTRY_IMAGE:
-  stage: build
   needs: [fetch:binary]
   tags: [az1a]
   rules:
