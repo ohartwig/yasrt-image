@@ -77,14 +77,21 @@ fetch:binary:
     # Cross-project read with the job token; yasrt/cli lists this project on its
     # job-token allowlist. No long-lived credential is involved.
     - mkdir -p dist && cd dist
+    # --location is not optional: the package endpoint answers 302 to the S3
+    # bucket, and without it curl writes the redirect body into the file. The
+    # first run did exactly that and produced a "This resource has been moved
+    # temporarily" file where the binary should have been.
     - |
       for f in yasrt-linux-arm64 SHA256SUMS; do
-        curl --fail-with-body --silent --show-error \
+        curl --fail-with-body --silent --show-error --location \
           --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
-          --output "$f" "${PACKAGE_URL}/${f}"
+          --output "$f" "${PACKAGE_URL}/${f}" || exit 1
       done
     # Verify before packaging: an unverified download is a supply-chain hole,
     # and the manifest is published alongside the binaries for exactly this.
+    # Verify before packaging. This also catches a download that silently
+    # returned something other than the binary, which is how the redirect
+    # problem above announced itself.
     - grep 'yasrt-linux-arm64$' SHA256SUMS > SHA256SUMS.arm64
     - sha256sum -c SHA256SUMS.arm64
     - chmod 0755 yasrt-linux-arm64
