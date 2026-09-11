@@ -37,6 +37,14 @@ include:
       config-preset: '@moselwal/semantic-release-config'
       config-preset-group-id: '175'
       config-preset-scope: 'moselwal'
+      # The component's default non-release-paths contains .gitlab-ci.yml,
+      # which is wrong for an image repository: the pipeline builds the
+      # deliverable. Here it is worse than usual — YASRT_VERSION lives in this
+      # file, so bumping the packaged binary touches nothing else and the
+      # release is refused. That is improvement item I-081 exactly, hit by the
+      # repository that packages the tool written to fix it. golang-image
+      # carries the same override for the same reason.
+      non-release-paths: '.pre-commit-config.yaml'
   - component: ${CI_SERVER_HOST}/devops/ci-cd-components/buildkit-image-build/buildkit-image-build@1
     inputs:
       docker_context_path: '.'
