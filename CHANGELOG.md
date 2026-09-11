@@ -1,3 +1,9 @@
+## [1.4.0](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.3.0...1.4.0) (2026-09-11)
+
+### :sparkles: Features
+
+* **ci:** release with yasrt -- the tag after the image, on one pipeline ([ad30f41](https://git.ole-hartwig.eu/devops/images/yasrt/commit/ad30f41d374a579465e6fa3e27608104ea3fd1bf))
+
 ## [1.3.0](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.2.1...1.3.0) (2026-09-11)
 
 ### :sparkles: Features
