@@ -1,29 +1,24 @@
 # The yasrt release tool, packaged for the CI job it runs in.
 #
-# Wolfi, not distroless: every golden image in this estate descends from
-# wolfi-base, and this image needs a real git binary anyway — yasrt drives git
-# through os/exec precisely so that signing, credential handling and
-# shallow-clone behaviour are git's own rather than a library's approximation.
+# Built on devops/images/wolfi-base like every other golden image here: the
+# base carries the address selection (K38), the melange key and the package
+# sources, so none of that is repeated below. This image needs a real git
+# binary anyway — yasrt drives git through os/exec precisely so that signing,
+# credential handling and shallow-clone behaviour are git's own rather than a
+# library's approximation.
 #
 # The binary is not built here. yasrt/cli releases it to its generic package
 # registry; the pipeline fetches it into dist/ with a job token and this file
 # only packages it. That is the same split devops/images/deploy-opkssh uses,
 # and it keeps the Go toolchain out of the image.
 #
-# renovate: datasource=docker depName=registry.ole-hartwig.eu/devops/ci-mirrors/wolfi-base
-FROM registry.ole-hartwig.eu/devops/ci-mirrors/wolfi-base:latest@sha256:65e1acb87a2bf356b92c5f70f3980f03b4bb51dfd483c834e01557525f15c1d9
+# renovate: datasource=docker depName=registry.ole-hartwig.eu/devops/images/wolfi-base
+FROM registry.ole-hartwig.eu/devops/images/wolfi-base:2@sha256:0c479710ba573f7ee86528195b427833f7aede6a6bb5652c707ef080eb87868c
 
 # Set by BuildKit for each leg of a multi-platform build.
 ARG TARGETARCH
 
 USER root
-
-# Address selection before the first apk call (estate rule K38). The build fleet
-# has no public IPv4; without this, apk tries the A records first, waits out a
-# sixty-second timeout per step and only then falls back. The build stays green
-# and merely takes twenty minutes longer, which is how it went unnoticed in ten
-# images for eleven weeks. Copied verbatim from devops/images/wolfi-base.
-RUN printf 'label     ::1/128       0\nlabel     ::/0          1\nlabel     ::ffff:0:0/96 4\nprecedence ::1/128       50\nprecedence ::/0          40\nprecedence ::ffff:0:0/96 10\n' > /etc/gai.conf
 
 # Three things this line learned the hard way, all found by building it:
 #
@@ -37,8 +32,7 @@ RUN printf 'label     ::1/128       0\nlabel     ::/0          1\nlabel     ::ff
 #  - Nothing here is version-pinned. Wolfi rolls forward, the base image digest
 #    is what fixes this image in time, and an exact apk pin only guarantees a
 #    build that stops working. Same reasoning as devops/images/golang!79.
-RUN echo "https://packages.wolfi.dev/os" > /etc/apk/repositories \
- && apk add --no-cache \
+RUN apk add --no-cache \
       cmd:git \
       cmd:gpg \
       cmd:ssh-keygen \
