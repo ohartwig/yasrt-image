@@ -1,3 +1,9 @@
+## [1.4.2](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.1...1.4.2) (2026-09-12)
+
+### :bug: Fixes
+
+* package yasrt 1.6.1 ([c9cdcb8](https://git.ole-hartwig.eu/devops/images/yasrt/commit/c9cdcb8138f78c80d45655bdc7fca869f419dff1))
+
 ## [1.4.1](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.0...1.4.1) (2026-09-12)
 
 ### :bug: Fixes
