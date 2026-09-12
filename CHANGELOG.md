@@ -1,3 +1,9 @@
+## [1.4.1](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.0...1.4.1) (2026-09-12)
+
+### :bug: Fixes
+
+* build on the golden wolfi-base instead of the mirror ([627c40a](https://git.ole-hartwig.eu/devops/images/yasrt/commit/627c40ad429921e4ef2dd51a82a6b0b477cb3fe1))
+
 ## [1.4.0](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.3.0...1.4.0) (2026-09-11)
 
 ### :sparkles: Features
