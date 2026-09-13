@@ -189,7 +189,10 @@ mirror:github:
       git clone --quiet --mirror "https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" /tmp/mirror
       cd /tmp/mirror
       git filter-repo --quiet --invert-paths --path CLAUDE.md --path .gitsigners --path .gitsigners.d --path .gitlab/
-      git for-each-ref --format='%(refname)' refs/heads | grep -vx "refs/heads/${CI_DEFAULT_BRANCH}" | xargs -r -n1 git update-ref -d
-      git push --quiet --force --prune "https://x-access-token:${GITHUB_MIRROR_TOKEN}@github.com/ohartwig/yasrt-image.git" \
+      git for-each-ref --format='%(refname)' refs/heads | while read -r ref; do
+        [ "$ref" = "refs/heads/${CI_DEFAULT_BRANCH}" ] || git update-ref -d "$ref"
+      done
+      echo "publishing $(git rev-parse --short "${CI_DEFAULT_BRANCH}") and tags: $(git tag | tr '\n' ' ')"
+      git push --force --prune "https://x-access-token:${GITHUB_MIRROR_TOKEN}@github.com/ohartwig/yasrt-image.git" \
         "refs/heads/${CI_DEFAULT_BRANCH}:refs/heads/${CI_DEFAULT_BRANCH}" 'refs/tags/*:refs/tags/*'
-      echo "mirrored $(git rev-parse --short "${CI_DEFAULT_BRANCH}") and $(git tag | wc -l) tag(s) to github.com/ohartwig/yasrt-image"
+      echo "mirrored to github.com/ohartwig/yasrt-image"
