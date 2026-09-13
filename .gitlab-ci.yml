@@ -160,3 +160,36 @@ container_scanning:
     - if: $CI_COMMIT_TAG
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
     - when: never
+
+# The public mirror, filtered: .gitsigners and .gitlab/ are working material
+# of this instance, not part of the image. Same job as in yasrt/cli -- the
+# history is rewritten without those paths (deterministically, so the ids
+# stay put) and force-pushed. Runs after release, in the same pipeline.
+mirror:github:
+  stage: .post
+  needs:
+    - job: release
+      optional: true
+      artifacts: false
+  image:
+    name: registry.ole-hartwig.eu/devops/ci-mirrors/python:3-alpine@sha256:05b2b8b732ecd268fee8727a369f936f022d1321b59befd13c30ede22769dcdc
+    entrypoint: [""]
+  variables:
+    GIT_DEPTH: 0
+    GIT_STRATEGY: clone
+  rules:
+    - if: $GITHUB_MIRROR_TOKEN == null
+      when: never
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
+  script:
+    - apk add --no-cache git
+    - pip install --quiet --root-user-action=ignore git-filter-repo
+    - |
+      set -eu
+      git clone --quiet --mirror "https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" /tmp/mirror
+      cd /tmp/mirror
+      git filter-repo --quiet --invert-paths --path CLAUDE.md --path .gitsigners --path .gitsigners.d --path .gitlab/
+      git for-each-ref --format='%(refname)' refs/heads | grep -vx "refs/heads/${CI_DEFAULT_BRANCH}" | xargs -r -n1 git update-ref -d
+      git push --quiet --force --prune "https://x-access-token:${GITHUB_MIRROR_TOKEN}@github.com/ohartwig/yasrt-image.git" \
+        "refs/heads/${CI_DEFAULT_BRANCH}:refs/heads/${CI_DEFAULT_BRANCH}" 'refs/tags/*:refs/tags/*'
+      echo "mirrored $(git rev-parse --short "${CI_DEFAULT_BRANCH}") and $(git tag | wc -l) tag(s) to github.com/ohartwig/yasrt-image"
