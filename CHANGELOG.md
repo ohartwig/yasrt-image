@@ -1,3 +1,15 @@
+## [1.4.5](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.4...1.4.5) (2026-09-13)
+
+### :repeat: Continuous Integrations
+
+* **mirror:** prune every branch GitHub has that the filter did not keep ([77d12aa](https://git.ole-hartwig.eu/devops/images/yasrt/commit/77d12aaa613fea59a9f471cc1ef2ff2ba72307a9))
+* wire release's needs as an override, not through the component input ([84e6037](https://git.ole-hartwig.eu/devops/images/yasrt/commit/84e6037a1882772a647e7b65a502b047570a63d2))
+* **mirror:** run on the runner that can reach github.com ([c5fb8f6](https://git.ole-hartwig.eu/devops/images/yasrt/commit/c5fb8f66d28b43779854b4ef4f8498c1930fea4c))
+
+### :wrench: Chores
+
+* yasrt 1.9.0 ([e0591df](https://git.ole-hartwig.eu/devops/images/yasrt/commit/e0591df1dab62bc403ecb93bf2a305351e374312))
+
 ## [1.4.4](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.3...1.4.4) (2026-09-13)
 
 ### :repeat: Continuous Integrations
