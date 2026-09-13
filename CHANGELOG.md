@@ -1,3 +1,13 @@
+## [1.4.4](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.3...1.4.4) (2026-09-13)
+
+### :repeat: Continuous Integrations
+
+* **mirror:** prune refs with a loop, not grep | xargs ([112240e](https://git.ole-hartwig.eu/devops/images/yasrt/commit/112240e87c7a90145f4284f90eca1368a894eb2f))
+
+### :wrench: Chores
+
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to 9d23216 ([8d2e750](https://git.ole-hartwig.eu/devops/images/yasrt/commit/8d2e750f024c545fa73391fced870ea29969c88e))
+
 ## [1.4.3](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.2...1.4.3) (2026-09-13)
 
 ### :repeat: Continuous Integrations
