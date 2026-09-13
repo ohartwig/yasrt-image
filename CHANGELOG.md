@@ -1,3 +1,9 @@
+## [1.4.6](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.5...1.4.6) (2026-09-13)
+
+### :wrench: Chores
+
+* yasrt 1.9.1 ([a8ae405](https://git.ole-hartwig.eu/devops/images/yasrt/commit/a8ae405c5cb3d8a23dde12bf01f2ab801044e8f1))
+
 ## [1.4.5](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.4...1.4.5) (2026-09-13)
 
 ### :repeat: Continuous Integrations
