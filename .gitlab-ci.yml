@@ -167,6 +167,8 @@ container_scanning:
 # stay put) and force-pushed. Runs after release, in the same pipeline.
 mirror:github:
   stage: .post
+  # github.com has no IPv6 and the spot fleet no public IPv4.
+  tags: [az1a]
   needs:
     - job: release
       optional: true
