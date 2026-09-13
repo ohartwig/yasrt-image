@@ -40,6 +40,9 @@ include:
       stage-version: release
       stage-release: .post
       product: image
+      # The note on every merge request and closed issue of a release, as
+      # release:semver's success step left it.
+      mr-comments: 'true'
       rules-config:
         - if: $CI_PIPELINE_SOURCE == "schedule"
           when: never
