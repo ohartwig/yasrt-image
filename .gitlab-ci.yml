@@ -45,26 +45,7 @@ include:
           when: never
         - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_COMMIT_TAG == null && $CI_PIPELINE_SOURCE == "push"
         - when: never
-      release-needs:
-        - job: version
-          artifacts: true
-        - job: build:buildkit:image:$CI_REGISTRY_IMAGE
-          artifacts: false
-        - job: container_scanning:verdict
-          optional: true
-          artifacts: false
-        - job: sign:image
-          optional: true
-          artifacts: false
-        - job: attest:sbom
-          optional: true
-          artifacts: false
-        - job: verify:image-signature:$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
-          optional: true
-          artifacts: false
-        - job: verify:release-artifact-exists
-          optional: true
-          artifacts: false
+
 
   - component: ${CI_SERVER_HOST}/devops/ci-cd-components/buildkit-image-build/buildkit-image-build@2
     inputs:
@@ -196,3 +177,28 @@ mirror:github:
       git push --force --prune "https://x-access-token:${GITHUB_MIRROR_TOKEN}@github.com/ohartwig/yasrt-image.git" \
         "refs/heads/${CI_DEFAULT_BRANCH}:refs/heads/${CI_DEFAULT_BRANCH}" 'refs/tags/*:refs/tags/*'
       echo "mirrored to github.com/ohartwig/yasrt-image"
+
+# The release waits for the whole chain -- build, scan, sign, attest, verify --
+# not only for the stages: with `needs` the job says what its artefacts and
+# its report come from. Overrides the component's stage-ordered default.
+release:
+  needs:
+    - job: version
+      artifacts: true
+    - job: build:buildkit:image:$CI_REGISTRY_IMAGE
+      artifacts: false
+    - job: container_scanning:verdict
+      optional: true
+      artifacts: false
+    - job: sign:image
+      optional: true
+      artifacts: false
+    - job: attest:sbom
+      optional: true
+      artifacts: false
+    - job: verify:image-signature:$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+      optional: true
+      artifacts: false
+    - job: verify:release-artifact-exists
+      optional: true
+      artifacts: false
