@@ -1,3 +1,13 @@
+## [1.4.3](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.2...1.4.3) (2026-09-13)
+
+### :repeat: Continuous Integrations
+
+* mirror to github.com/ohartwig/yasrt-image, without the instance's working files ([1e916f6](https://git.ole-hartwig.eu/devops/images/yasrt/commit/1e916f6c778a114994faa7e75a5161d49d97b415))
+
+### :wrench: Chores
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/wolfi-base:2 docker digest to d3e532f ([6a5cd72](https://git.ole-hartwig.eu/devops/images/yasrt/commit/6a5cd726f123a7e28d95252034542ab076b952ea))
+
 ## [1.4.2](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.1...1.4.2) (2026-09-12)
 
 ### :bug: Fixes
