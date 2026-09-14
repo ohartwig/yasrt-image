@@ -1,3 +1,9 @@
+## [1.4.8](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.7...1.4.8) (2026-09-14)
+
+### :repeat: Chores
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/wolfi-base:2 docker digest to c042043 ([f6770e9](https://git.ole-hartwig.eu/devops/images/yasrt/commit/f6770e9e1bfa03eb3ebb1f7dfbe409723a384d2b))
+
 ## [1.4.7](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.6...1.4.7) (2026-09-14)
 
 ### :repeat: Continuous Integrations
