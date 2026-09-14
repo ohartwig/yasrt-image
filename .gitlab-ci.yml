@@ -35,7 +35,7 @@ include:
   # same pipeline, and `release` in .post creates the tag and the GitLab
   # release only after all of that passed. A job-token push starts no
   # pipeline, so nothing runs twice; there is no tag pipeline any more.
-  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/release-tools/yasrt@1
+  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/release-tools/yasrt@2
     inputs:
       stage-version: release
       stage-release: .post
