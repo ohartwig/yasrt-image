@@ -1,3 +1,14 @@
+## [1.4.7](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.6...1.4.7) (2026-09-14)
+
+### :repeat: Continuous Integrations
+
+* release-tools/yasrt@2 ([99cbcf5](https://git.ole-hartwig.eu/devops/images/yasrt/commit/99cbcf5d9e41eb57ea2f74f9260825827beb8cce))
+* the release tells merge requests and issues they shipped, as before ([e11af83](https://git.ole-hartwig.eu/devops/images/yasrt/commit/e11af8395a839ede4a3accea426d2700b4a018bf))
+
+### :repeat: Chores
+
+* **deps:** update dependency yasrt/cli to v1.10.0 ([ad7bbaf](https://git.ole-hartwig.eu/devops/images/yasrt/commit/ad7bbafcd37a6fe6d85c3c35d26b7c01ba91741e))
+
 ## [1.4.6](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.5...1.4.6) (2026-09-13)
 
 ### :wrench: Chores
