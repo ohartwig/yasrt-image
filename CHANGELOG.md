@@ -1,3 +1,10 @@
+## [1.4.9](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.8...1.4.9) (2026-09-14)
+
+### :repeat: Chores
+
+* **deps:** update dependency yasrt/cli to v1.11.0 ([42c058a](https://git.ole-hartwig.eu/devops/images/yasrt/commit/42c058a4b4bc1121b06d087dbae246404dbeff20))
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to 21b7af9 ([6688ba8](https://git.ole-hartwig.eu/devops/images/yasrt/commit/6688ba86fe2942fe26078b417bf84f624f5dbb8a))
+
 ## [1.4.8](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.7...1.4.8) (2026-09-14)
 
 ### :repeat: Chores
