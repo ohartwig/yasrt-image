@@ -1,3 +1,9 @@
+## [1.4.13](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.12...1.4.13) (2026-09-17)
+
+### :repeat: Chores
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/wolfi-base:2 docker digest to cc5d225 ([7f09b25](https://git.ole-hartwig.eu/devops/images/yasrt/commit/7f09b25b732b85097ab8de276f79b9c5d85ad610))
+
 ## [1.4.12](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.11...1.4.12) (2026-09-16)
 
 ### :repeat: Chores
