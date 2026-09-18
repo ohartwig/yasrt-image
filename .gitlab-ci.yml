@@ -12,7 +12,7 @@ stages: [release, fetch, verify, build, test, sign]
 
 variables:
   # renovate: datasource=gitlab-packages depName=yasrt/cli packageName=yasrt/cli:yasrt
-  YASRT_VERSION: "1.13.1"
+  YASRT_VERSION: "1.13.2"
   CURL_IMAGE: registry.ole-hartwig.eu/devops/images/curl:8.21
 
 include:
