@@ -1,13 +1,18 @@
 # Packages the yasrt binary into a Wolfi image.
 #
 # The binary is built and released by yasrt/cli; this repository only packages
-# it, the same split devops/images/deploy-opkssh uses. The fetch job runs before
-# the build so that dist/ is present in the build context.
+# it, the same split devops/images/pinup uses. The fetch job runs before the
+# build so that dist/ is present in the build context.
 # Stage order follows devops/images/golang: scanning runs in `test` *after*
 # `build`, because container_scanning depends on the image the build produced.
 # `release` leads because that is where `version` decides; the tag itself is
 # created last, in .post, once the image is built, scanned, signed and
 # verified. There is no tag pipeline: the main pipeline is the release.
+#
+# `stages:` stays here: the list REPLACES the bundle's, and a job in a stage
+# nobody declared stops the pipeline from being created at all. `fetch` and
+# `verify` are this repository's own: the try-build cannot run in .pre,
+# because the binary is fetched, not vendored, and .pre precedes the fetch.
 stages: [release, fetch, verify, build, test, sign]
 
 variables:
@@ -18,53 +23,28 @@ variables:
 include:
   # Re-scan the published image daily. A scan is otherwise only as old as the
   # last build, and this image is rebuilt only when the binary or the base
-  # changes — while trivy's advisory database rolls about every six hours.
-  # Runs from the pipeline schedule; every other job here stays out of it.
-  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/container-scanning/rescan@3.11.2
+  # changes -- while trivy's advisory database rolls about every six hours.
+  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/container-scanning/rescan@4
     inputs:
       stage: test
-  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/lint-tools/lint-ci-yaml@1
-    inputs:
-      stage: "test"
-      job-name: "lint:ci-yaml"
-      targets: ".gitlab-ci.yml"
-  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/supply-chain-verify/base-image-pins@2
-  # This repository releases itself with the tool it packages -- the first
-  # image repository to do so. `version` decides in the first stage, the
-  # image is fetched, verified, built, scanned, signed and verified on this
-  # same pipeline, and `release` in .post creates the tag and the GitLab
-  # release only after all of that passed. A job-token push starts no
-  # pipeline, so nothing runs twice; there is no tag pipeline any more.
-  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/release-tools/yasrt@2
-    inputs:
-      stage-version: release
-      stage-release: .post
-      product: image
-      # The note on every merge request and closed issue of a release, as
-      # release:semver's success step left it.
-      mr-comments: 'true'
-      rules-config:
-        - if: $CI_PIPELINE_SOURCE == "schedule"
-          when: never
-        - if: $CI_COMMIT_REF_PROTECTED == "true" && $CI_COMMIT_TAG == null && $CI_PIPELINE_SOURCE == "push"
-        - when: never
 
-
-  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/buildkit-image-build/buildkit-image-build@2
+  # The bundle every image in devops/images builds through (lint-ci-yaml,
+  # quick-checks, yasrt, buildkit-image-build with transitive scanning and
+  # signing, base-image-pins). This repository releases itself with the tool
+  # it packages, through the bundle like every other image. Until
+  # 2026-09-20 it assembled the same components by hand, for one input the
+  # bundle did not have (verify-stage; golden-image 2.15). What stands below
+  # is where it deviates from the bundle's defaults, and nothing else.
+  # Estate rule: a composed pipeline wherever one fits, referenced by
+  # rolling major (engineering/decisions/rolling-major-tag-for-pipelines.md).
+  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/composed-default-pipelines/golden-image@2
     inputs:
+      # yasrt: version decides first, the image is fetched, verified, built,
+      # scanned, signed and verified on this pipeline, and only then does
+      # release create the tag.
       release-tool: yasrt
-      docker_context_path: '.'
-      container_image_name: $CI_REGISTRY_IMAGE
-      # Empty on a branch pipeline; the build then takes RELEASE_TAG from the
-      # version job's handshake. A tag pipeline (none is expected any more)
-      # would still use the tag.
-      container_image_tag: $CI_COMMIT_TAG
-      containerfile_name: Containerfile
-      # verify:containerfile needs packages.wolfi.dev, which the general pool
-      # cannot reach; az1a is the IPv4-capable pool.
-      tags-config: ['az1a']
-      # verify:containerfile really builds the file, so it cannot run in .pre:
-      # the binary is fetched, not vendored, and .pre precedes the fetch.
+      # verify:containerfile really builds the file, so it runs after the
+      # fetch - see `stages` above.
       verify-stage: verify
       # arm64 only, like devops/images/golang: the fleet is arm64 and no
       # consumer pulls an amd64 leg.
@@ -72,10 +52,10 @@ include:
       # A rolling major tag beside the immutable release tag, so consumers can
       # ask for "yasrt 1" rather than tracking this repository's own sequence.
       additional-tags: '1'
-      cosign_enabled: 'false'
-      inherit-signing: 'true'
-      signing-stage: sign
-      inherit-release-check: 'true'
+      # verify:containerfile needs packages.wolfi.dev, which the general pool
+      # cannot reach; az1a is the IPv4-capable pool.
+      tags-config:
+      - az1a
 
 fetch:binary:
   stage: fetch
@@ -182,28 +162,3 @@ mirror:github:
       git push --force --prune "https://x-access-token:${GITHUB_MIRROR_TOKEN}@github.com/ohartwig/yasrt-image.git" \
         'refs/heads/*:refs/heads/*' 'refs/tags/*:refs/tags/*'
       echo "mirrored to github.com/ohartwig/yasrt-image"
-
-# The release waits for the whole chain -- build, scan, sign, attest, verify --
-# not only for the stages: with `needs` the job says what its artefacts and
-# its report come from. Overrides the component's stage-ordered default.
-release:
-  needs:
-    - job: version
-      artifacts: true
-    - job: build:buildkit:image:$CI_REGISTRY_IMAGE
-      artifacts: false
-    - job: container_scanning:verdict
-      optional: true
-      artifacts: false
-    - job: sign:image
-      optional: true
-      artifacts: false
-    - job: attest:sbom
-      optional: true
-      artifacts: false
-    - job: verify:image-signature:$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
-      optional: true
-      artifacts: false
-    - job: verify:release-artifact-exists
-      optional: true
-      artifacts: false
