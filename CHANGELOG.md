@@ -1,3 +1,18 @@
+## [1.4.17](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.16...1.4.17) (2026-09-23)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to 5f32f47 ([00665ba](https://git.ole-hartwig.eu/devops/images/yasrt/commit/00665ba3b4841421188be9a5969504802d483fdc))
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to 24ef4f0 ([a5511ed](https://git.ole-hartwig.eu/devops/images/yasrt/commit/a5511eda338c1e3299cfe088302987b6d59bb659))
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to e0047b0 ([7220ad8](https://git.ole-hartwig.eu/devops/images/yasrt/commit/7220ad89aca10d9e509a31f2d533430f71e6e44a))
+* build through composed-default-pipelines/golden-image ([76cde40](https://git.ole-hartwig.eu/devops/images/yasrt/commit/76cde405fcf4805f4100a2a96b2417f7ec1718be))
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to 7661c97 ([5eb143c](https://git.ole-hartwig.eu/devops/images/yasrt/commit/5eb143c6023ea0bac3d268c256118fe20f2f8f4a))
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to 9b878d4 ([5005027](https://git.ole-hartwig.eu/devops/images/yasrt/commit/500502797e62f68f386ac4d630a5faf884c0f3c0))
+
+### :repeat: Chores
+
+* **deps:** update dependency yasrt/cli to v1.13.3 ([9faf27b](https://git.ole-hartwig.eu/devops/images/yasrt/commit/9faf27b04d29d86528ab49afb3bad530ed33b81b))
+
 ## [1.4.16](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.15...1.4.16) (2026-09-18)
 
 ### :repeat: Continuous Integrations
