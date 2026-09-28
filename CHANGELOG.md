@@ -1,3 +1,13 @@
+## [1.4.24](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.23...1.4.24) (2026-09-28)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update dependency devops/ci-cd-components/composed-default-pipelines to v2.21.3 ([de5f405](https://git.ole-hartwig.eu/devops/images/yasrt/commit/de5f405d20d77ca1ed610efdcb6b99a9298b6dc5))
+
+### :repeat: Chores
+
+* **repo-templates:** sync ([d86b67f](https://git.ole-hartwig.eu/devops/images/yasrt/commit/d86b67f9382a1e515ba2eb9e8c040b0c8b3ac6de))
+
 ## [1.4.23](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.22...1.4.23) (2026-09-28)
 
 ### :repeat: Chores
