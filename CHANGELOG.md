@@ -1,3 +1,16 @@
+## [1.4.28](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.27...1.4.28) (2026-09-30)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update dependency devops/ci-cd-components/composed-default-pipelines to v2.21.24 ([aaafeda](https://git.ole-hartwig.eu/devops/images/yasrt/commit/aaafeda2ccefbfff4c6eb98172922c8a7ce73aed))
+* **deps:** update dependency devops/ci-cd-components/composed-default-pipelines to v2.21.21 ([9b9e27a](https://git.ole-hartwig.eu/devops/images/yasrt/commit/9b9e27a057131deaac21889b7a289c9f7fdecf15))
+* **deps:** update dependency devops/ci-cd-components/composed-default-pipelines to v2.21.20 ([b65580c](https://git.ole-hartwig.eu/devops/images/yasrt/commit/b65580c93af3e6ad900713ffa827c6082702c75e))
+* **deps:** update dependency devops/ci-cd-components/composed-default-pipelines to v2.21.18 ([9e9d70b](https://git.ole-hartwig.eu/devops/images/yasrt/commit/9e9d70b1d6832b4f43e3a1c6cd481c633b15df74))
+
+### :repeat: Chores
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/wolfi-base:2 docker digest to ea6effb ([28087e7](https://git.ole-hartwig.eu/devops/images/yasrt/commit/28087e77465c9c3e03ec3fcc8bbdb821c83aff32))
+
 ## [1.4.27](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.26...1.4.27) (2026-09-30)
 
 ### :repeat: Continuous Integrations
