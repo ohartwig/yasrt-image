@@ -37,7 +37,7 @@ include:
   # is where it deviates from the bundle's defaults, and nothing else.
   # Estate rule: a composed pipeline wherever one fits, referenced by
   # rolling major (engineering/decisions/rolling-major-tag-for-pipelines.md).
-  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/composed-default-pipelines/golden-image@2.21.24
+  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/composed-default-pipelines/golden-image@2.21.25
     inputs:
       # yasrt: version decides first, the image is fetched, verified, built,
       # scanned, signed and verified on this pipeline, and only then does
