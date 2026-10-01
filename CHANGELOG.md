@@ -1,3 +1,17 @@
+## [1.4.29](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.28...1.4.29) (2026-10-01)
+
+### :repeat: Continuous Integrations
+
+* follow composed-default-pipelines on the rolling major tag ([b7cedc1](https://git.ole-hartwig.eu/devops/images/yasrt/commit/b7cedc1fc13b5a41a1a4643471a49d3ec70c86ee))
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to c40ee60 ([1776d30](https://git.ole-hartwig.eu/devops/images/yasrt/commit/1776d30a0d5d96f4e321bc38b328f64cef156b17))
+* **deps:** update dependency devops/ci-cd-components/composed-default-pipelines to v2.21.27 ([85258b6](https://git.ole-hartwig.eu/devops/images/yasrt/commit/85258b67960cae71def65ecd4ef94324e194f39a))
+* **deps:** update dependency devops/ci-cd-components/composed-default-pipelines to v2.21.26 ([783b1ee](https://git.ole-hartwig.eu/devops/images/yasrt/commit/783b1eef7a96b589b0187e51dfa48ef02d1c9e18))
+* **deps:** update dependency devops/ci-cd-components/composed-default-pipelines to v2.21.25 ([48bba41](https://git.ole-hartwig.eu/devops/images/yasrt/commit/48bba41cc9e484c65f9ff90bb9e07c3b53639a60))
+
+### :repeat: Chores
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/wolfi-base:2 docker digest to 4d6b5f9 ([3fa48e2](https://git.ole-hartwig.eu/devops/images/yasrt/commit/3fa48e20b8c98a30f64ea52dc9ebfbd3eda3af0f))
+
 ## [1.4.28](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.27...1.4.28) (2026-09-30)
 
 ### :repeat: Continuous Integrations
