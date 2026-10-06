@@ -1,3 +1,9 @@
+## [1.4.36](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.35...1.4.36) (2026-10-06)
+
+### :repeat: Chores
+
+* **deps:** update dependency yasrt/cli to v1.13.7 ([e093d96](https://git.ole-hartwig.eu/devops/images/yasrt/commit/e093d964bfea9137f614c80235842092f3b25200))
+
 ## [1.4.35](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.34...1.4.35) (2026-10-06)
 
 ### :repeat: Continuous Integrations
