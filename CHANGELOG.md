@@ -1,3 +1,9 @@
+## [1.4.41](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.40...1.4.41) (2026-10-09)
+
+### :bug: Fixes
+
+* **deps:** libldap-2.7 instead of libldap-2.6 ([4e6148a](https://git.ole-hartwig.eu/devops/images/yasrt/commit/4e6148a923458b976bf2e5cbf1b0ff36c908b854))
+
 ## [1.4.40](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.39...1.4.40) (2026-10-09)
 
 ### :bug: Fixes
