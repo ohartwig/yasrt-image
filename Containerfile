@@ -32,10 +32,14 @@ USER root
 #  - Nothing here is version-pinned. Wolfi rolls forward, the base image digest
 #    is what fixes this image in time, and an exact apk pin only guarantees a
 #    build that stops working. Same reasoning as devops/images/golang!79.
+#
+# libldap-2.6 is named because Wolfi has two providers of libldap.so.2 (git
+# pulls it in via libcurl) and apk picks the stale `libldap` package without it.
 RUN apk add --no-cache \
       cmd:git \
       cmd:gpg \
       cmd:ssh-keygen \
+      libldap-2.6 \
       ca-certificates-bundle
 
 COPY dist/yasrt-linux-${TARGETARCH} /usr/local/bin/yasrt
@@ -63,7 +67,9 @@ RUN set -eu; \
     test "$(git -C "$d" log -1 --format=%s)" = "feat: smoke"; \
     test "$(git -C "$d" tag --points-at HEAD)" = "1.0.0"; \
     test -n "$(git -C "$d" rev-parse HEAD)"; \
-    rm -rf "$d" /tmp/smoke_key /tmp/smoke_key.pub
+    rm -rf "$d" /tmp/smoke_key /tmp/smoke_key.pub; \
+    apk info -W /usr/lib/libldap.so.2 | grep -q ' owned by libldap-2\.6-' \
+      || { echo "smoke: libldap.so.2 comes from the stale libldap package, not libldap-2.6" >&2; exit 1; }
 
 USER 1000
 WORKDIR /workspace
