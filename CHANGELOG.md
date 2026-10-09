@@ -1,3 +1,13 @@
+## [1.4.40](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.39...1.4.40) (2026-10-09)
+
+### :bug: Fixes
+
+* **deps:** install libldap-2.6 instead of the stale libldap provider ([c821a2b](https://git.ole-hartwig.eu/devops/images/yasrt/commit/c821a2b6505929e0776843d9bb1a9eb136add474))
+
+### :repeat: Continuous Integrations
+
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to f2f509b ([ae04a1d](https://git.ole-hartwig.eu/devops/images/yasrt/commit/ae04a1d7fda791ede3633dcac0306d0148d2dc9f))
+
 ## [1.4.39](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.38...1.4.39) (2026-10-08)
 
 ### :repeat: Continuous Integrations
