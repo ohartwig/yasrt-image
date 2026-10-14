@@ -1,3 +1,15 @@
+## [1.4.46](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.45...1.4.46) (2026-10-14)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to c1d423b ([0ce7f8f](https://git.ole-hartwig.eu/devops/images/yasrt/commit/0ce7f8fc450277d2728c9d25d687403b7ecae71b))
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to 5048165 ([6146242](https://git.ole-hartwig.eu/devops/images/yasrt/commit/614624219b511f6e9de54da3175a976458ef8da7))
+* smoke-test yasrt before release ([ac377a7](https://git.ole-hartwig.eu/devops/images/yasrt/commit/ac377a797e95dcd04ab8279e932fb244482c3ed1))
+
+### :repeat: Chores
+
+* **deps:** update dependency yasrt/cli to v1.14.0 ([4e167b3](https://git.ole-hartwig.eu/devops/images/yasrt/commit/4e167b3cb0e1c1b83bcc0aee661f5b9dab5ff186))
+
 ## [1.4.45](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.44...1.4.45) (2026-10-12)
 
 ### :repeat: Chores
