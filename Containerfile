@@ -13,7 +13,7 @@
 # and it keeps the Go toolchain out of the image.
 #
 # renovate: datasource=docker depName=registry.ole-hartwig.eu/devops/images/wolfi-base
-FROM registry.ole-hartwig.eu/devops/images/wolfi-base:2@sha256:6d26bba5bb29f202ced243986d7a71a52c65eec81f64b2ba45c23d328af8aaa4
+FROM registry.ole-hartwig.eu/devops/images/wolfi-base:2@sha256:6642e8dac0fb83b30a47426295baf5814e54aa69426d76ffc66001edf49d4667
 
 # Set by BuildKit for each leg of a multi-platform build.
 ARG TARGETARCH
