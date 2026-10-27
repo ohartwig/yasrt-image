@@ -1,48 +1,33 @@
+# syntax=docker.io/docker/dockerfile-upstream:1.28.0@sha256:bb22d9815c728170f72750f4e5b0d672e06176142e1d602c7e66c050100b7e5b
 # The yasrt release tool, packaged for the CI job it runs in.
 #
-# Built on devops/images/wolfi-base like every other golden image here: the
-# base carries the address selection (K38), the melange key and the package
-# sources, so none of that is repeated below. This image needs a real git
-# binary anyway — yasrt drives git through os/exec precisely so that signing,
-# credential handling and shallow-clone behaviour are git's own rather than a
-# library's approximation.
+# A root filesystem from openSUSE Tumbleweed, built by
+# devops/images/tumbleweed-builder and copied into FROM scratch (handbook:
+# engineering/delivery/tumbleweed-migration.md, wave 2); until 2026-10 it
+# was wolfi-base. This image needs a real git binary - yasrt drives git
+# through os/exec precisely so that signing, credential handling and
+# shallow-clone behaviour are git's own rather than a library's
+# approximation.
 #
 # The binary is not built here. yasrt/cli releases it to its generic package
 # registry; the pipeline fetches it into dist/ with a job token and this file
 # only packages it. That is the same split devops/images/deploy-opkssh uses,
 # and it keeps the Go toolchain out of the image.
 #
-# renovate: datasource=docker depName=registry.ole-hartwig.eu/devops/images/wolfi-base
-FROM registry.ole-hartwig.eu/devops/images/wolfi-base:2@sha256:e121cf9905c85f86de1ef3ead521378a63d3d9cc730b7c9f6e3f824de2f38c91
+# One snapshot pin per architecture, moved by pinup
+# (custom.tumbleweed-snapshot), is the only package pin.
+# renovate: datasource=custom.tumbleweed-snapshot depName=aarch64
+ARG TW_SNAPSHOT_AARCH64=20261020.1793034056-d9ab478b
 
-# Set by BuildKit for each leg of a multi-platform build.
+FROM registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1@sha256:4a3cb225f56e1d46bdbe7e746d58b297b89986c2cb509a6fd447624462672f40 AS rootfs
+ARG TW_SNAPSHOT_AARCH64
+# @userland is bash as /bin/sh and the GNU tools; openssh-clients brings
+# ssh-keygen (openssh-common). The yasrt user gets the UID the jobs run as.
+RUN koh-rootfs /rootfs --user yasrt:1000 @userland git-core gpg2 openssh-clients ca-certificates-mozilla
+
+FROM scratch
+COPY --from=rootfs /rootfs/ /
 ARG TARGETARCH
-
-USER root
-
-# Three things this line learned the hard way, all found by building it:
-#
-#  - Packages are selected by the COMMAND they provide, not by name. Wolfi's
-#    `gnupg` and `openssh-client` are meta-packages that install an SBOM entry
-#    and no binaries; the gpg binary lives in a package called `gpg`, and
-#    ssh-keygen in one of the openssh subpackages. `cmd:` says what the image
-#    actually needs and lets apk resolve it, instead of guessing names.
-#  - ca-certificates-bundle ships the bundle and no update-ca-certificates
-#    script; calling it exits 127. devops/images/golang does not call it either.
-#  - Nothing here is version-pinned. Wolfi rolls forward, the base image digest
-#    is what fixes this image in time, and an exact apk pin only guarantees a
-#    build that stops working. Same reasoning as devops/images/golang!79.
-#
-# libldap-2.7 is named because Wolfi has several providers of libldap.so.2 (git
-# pulls it in via libcurl) and apk picks the stale `libldap` package without it.
-# 2.7 rather than 2.6: libldap-2.7 is the newest maintained OpenLDAP provider
-# in Wolfi (same sonames libldap.so.2 / liblber.so.2).
-RUN apk add --no-cache \
-      cmd:git \
-      cmd:gpg \
-      cmd:ssh-keygen \
-      libldap-2.7 \
-      ca-certificates-bundle
 
 COPY dist/yasrt-linux-${TARGETARCH} /usr/local/bin/yasrt
 
@@ -50,8 +35,7 @@ COPY dist/yasrt-linux-${TARGETARCH} /usr/local/bin/yasrt
 # the job user and git then refuses to touch it, so declare it once here rather
 # than in every consuming job.
 RUN chmod 0755 /usr/local/bin/yasrt \
- && git config --system --add safe.directory '*' \
- && adduser -D -u 1000 yasrt
+ && git config --system --add safe.directory '*'
 
 # Smoke test. Deliberately not `git --version`: yasrt drives git through
 # os/exec for everything it does — tag creation, log parsing, signing,
@@ -70,8 +54,7 @@ RUN set -eu; \
     test "$(git -C "$d" tag --points-at HEAD)" = "1.0.0"; \
     test -n "$(git -C "$d" rev-parse HEAD)"; \
     rm -rf "$d" /tmp/smoke_key /tmp/smoke_key.pub; \
-    apk info -W /usr/lib/libldap.so.2 | grep -q ' owned by libldap-2\.7-' \
-      || { echo "smoke: libldap.so.2 is not owned by libldap-2.7 (another provider won)" >&2; exit 1; }
+    grep -q '^ID="opensuse-tumbleweed"' /usr/lib/os-release
 
 USER 1000
 WORKDIR /workspace

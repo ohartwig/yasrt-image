@@ -16,6 +16,9 @@
 stages: [release, fetch, verify, build, test, sign]
 
 variables:
+  # The scan must detect openSUSE Tumbleweed, or the verdict fails
+  # (container-scanning CS_EXPECTED_OS).
+  CS_EXPECTED_OS: opensuse-tumbleweed
   # renovate: datasource=gitlab-packages depName=yasrt/cli packageName=yasrt/cli:yasrt
   YASRT_VERSION: "1.14.4"
   CURL_IMAGE: registry.ole-hartwig.eu/devops/images/curl:8.21
