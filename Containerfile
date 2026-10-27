@@ -19,7 +19,7 @@
 # renovate: datasource=custom.tumbleweed-snapshot depName=aarch64
 ARG TW_SNAPSHOT_AARCH64=20261020.1793034056-d9ab478b
 
-FROM registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1@sha256:525c60b8f29b0a6a72ccf88f0cd8568a034aac67ebf5498fdbfe6bb352441bfc AS rootfs
+FROM registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1@sha256:b06e33b14052e0cace82f0b860c77917992a3f8eaa2a7d427ac3ffd7ae171369 AS rootfs
 ARG TW_SNAPSHOT_AARCH64
 # @userland is bash as /bin/sh and the GNU tools; openssh-clients brings
 # ssh-keygen (openssh-common). The yasrt user gets the UID the jobs run as.
