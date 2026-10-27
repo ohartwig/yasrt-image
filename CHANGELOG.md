@@ -1,3 +1,17 @@
+## [1.5.0](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.59...1.5.0) (2026-10-27)
+
+### :sparkles: Features
+
+* build from openSUSE Tumbleweed instead of Wolfi ([5220857](https://git.ole-hartwig.eu/devops/images/yasrt/commit/52208573be2c0f46694c561304c7f2bf610f17fe))
+
+### :bug: Fixes
+
+* build with tumbleweed-builder 1.3.0 (koh-rootfs --user) ([a1c097d](https://git.ole-hartwig.eu/devops/images/yasrt/commit/a1c097d408255c81bbb3aed4e89764bd7b82c390))
+
+### :repeat: Chores
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1 docker digest to e1cc851 ([1d2a985](https://git.ole-hartwig.eu/devops/images/yasrt/commit/1d2a9858df1ba3fe260f3427a73008436effdb8c))
+
 ## [1.4.59](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.58...1.4.59) (2026-10-27)
 
 ### :repeat: Continuous Integrations
