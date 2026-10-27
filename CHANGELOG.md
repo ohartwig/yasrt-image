@@ -1,3 +1,17 @@
+## [1.4.58](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.57...1.4.58) (2026-10-27)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to 38c863d ([1c81fa5](https://git.ole-hartwig.eu/devops/images/yasrt/commit/1c81fa5cf2f1e87ce761b292c052d97e0b0c8ce0))
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to 93fa233 ([7f2d304](https://git.ole-hartwig.eu/devops/images/yasrt/commit/7f2d3049ac9dcd94136667321392594a1b2d1ccc))
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to 7def806 ([a021668](https://git.ole-hartwig.eu/devops/images/yasrt/commit/a021668df3c92e3f0b0abc7f2251128f67870597))
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to 0c12ec6 ([4e82d63](https://git.ole-hartwig.eu/devops/images/yasrt/commit/4e82d633d610b225be3f2ea1a96ba8f12ffe0be9))
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.6.35 docker digest to a571681 ([997f6f0](https://git.ole-hartwig.eu/devops/images/yasrt/commit/997f6f0a7f1769b72e68fc70ea7ed44535f0dce2))
+
+### :repeat: Chores
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/wolfi-base:2 docker digest to e121cf9 ([df71cbc](https://git.ole-hartwig.eu/devops/images/yasrt/commit/df71cbc30dc1f332d1fff6e97d38488685261b55))
+
 ## [1.4.57](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.4.56...1.4.57) (2026-10-25)
 
 ### :repeat: Continuous Integrations
