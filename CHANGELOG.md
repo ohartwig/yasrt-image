@@ -1,3 +1,9 @@
+## [1.5.22](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.21...1.5.22) (2026-10-28)
+
+### :repeat: Chores
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1 docker digest to d04c912 ([6b5e228](https://git.ole-hartwig.eu/devops/images/yasrt/commit/6b5e228694f4a79972e0922248ef6311b81e05fa))
+
 ## [1.5.21](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.20...1.5.21) (2026-10-28)
 
 ### :repeat: Chores
