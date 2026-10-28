@@ -1,3 +1,10 @@
+## [1.5.54](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.53...1.5.54) (2026-10-28)
+
+### :repeat: Chores
+
+* **deps:** update dependency aarch64 to v20261020.1793084718-2b1d0001 ([677a68a](https://git.ole-hartwig.eu/devops/images/yasrt/commit/677a68a282e10b42901a0f3ecd81f996204966c2))
+* **deps:** update registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1 docker digest to f1f65d6 ([04058ea](https://git.ole-hartwig.eu/devops/images/yasrt/commit/04058ea189b8a593a22ebf14a62a44ae0a6fc71e))
+
 ## [1.5.53](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.52...1.5.53) (2026-10-28)
 
 ### :repeat: Chores
