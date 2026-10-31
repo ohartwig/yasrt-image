@@ -1,3 +1,10 @@
+## [1.5.82](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.81...1.5.82) (2026-10-31)
+
+### :repeat: Chores
+
+* **deps:** update dependency yasrt/cli to v1.14.5 ([6c9b844](https://git.ole-hartwig.eu/devops/images/yasrt/commit/6c9b84494f91ab5db94dae97c529357fb2ceea0f))
+* **deps:** update dependency aarch64 to v20261031.1793474675-66d9bb82 ([8af2b83](https://git.ole-hartwig.eu/devops/images/yasrt/commit/8af2b8342ddbb8187e67cb18c340c50b287be2e2))
+
 ## [1.5.81](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.80...1.5.81) (2026-10-31)
 
 ### :repeat: Chores
