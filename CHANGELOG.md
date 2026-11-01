@@ -1,3 +1,16 @@
+## [1.5.84](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.83...1.5.84) (2026-11-01)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning docker tag to v8.7.0 ([ae96aef](https://git.ole-hartwig.eu/devops/images/yasrt/commit/ae96aefc93ba53a5957e81c93f4723e968c40265))
+
+### :repeat: Chores
+
+* **deps:** update dependency aarch64 to v20261101.1793512302-d26a3654 ([50f1785](https://git.ole-hartwig.eu/devops/images/yasrt/commit/50f178549f24ce0590341a838d83264c5f5fbb5f))
+* **deps:** update snapshots ([3c92a08](https://git.ole-hartwig.eu/devops/images/yasrt/commit/3c92a08799edb03762938b370a9f61820948dac5))
+* **deps:** update registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1 docker digest to a1c27d2 ([e4cf4d4](https://git.ole-hartwig.eu/devops/images/yasrt/commit/e4cf4d4365394c7943f8588ecda407361ed3df4d))
+* **deps:** update dependency aarch64 to v20261031.1793488937-0afc3a7e ([ce704a1](https://git.ole-hartwig.eu/devops/images/yasrt/commit/ce704a119811de795e53a03afd0520df800da120))
+
 ## [1.5.83](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.82...1.5.83) (2026-11-01)
 
 ### :repeat: Chores
