@@ -1,3 +1,13 @@
+## [1.5.109](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.108...1.5.109) (2026-11-04)
+
+### :bug: Fixes
+
+* **security:** AUD-043 F02 — verify the yasrt release signature before packaging ([3c39541](https://git.ole-hartwig.eu/devops/images/yasrt/commit/3c395414034a30528092e2e01b106ae13b79c351))
+
+### :repeat: Chores
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1 docker digest to 3b8c5bd ([1222033](https://git.ole-hartwig.eu/devops/images/yasrt/commit/1222033239017963e05dcddfe85cfcddcc0ad4e5))
+
 ## [1.5.108](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.107...1.5.108) (2026-11-04)
 
 ### :repeat: Continuous Integrations
