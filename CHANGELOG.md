@@ -1,3 +1,9 @@
+## [1.5.110](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.109...1.5.110) (2026-11-04)
+
+### :repeat: Chores
+
+* **deps:** update snapshots ([c34dae6](https://git.ole-hartwig.eu/devops/images/yasrt/commit/c34dae63f2a534356e97bbe49077cbae3a1e1a1e))
+
 ## [1.5.109](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.108...1.5.109) (2026-11-04)
 
 ### :bug: Fixes
