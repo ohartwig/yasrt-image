@@ -17,9 +17,9 @@
 # One snapshot pin per architecture, moved by pinup
 # (custom.tumbleweed-snapshot), is the only package pin.
 # renovate: datasource=custom.tumbleweed-snapshot depName=aarch64
-ARG TW_SNAPSHOT_AARCH64=20261020.1793655989-5e22f27f
+ARG TW_SNAPSHOT_AARCH64=20261020.1793655990-891c8134
 # renovate: datasource=custom.koh-snapshot depName=aarch64
-ARG KOH_SNAPSHOT_AARCH64=20261103.1793729352-10d5c522
+ARG KOH_SNAPSHOT_AARCH64=20261104.1793762489-d135d0c2
 
 FROM registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1@sha256:3c4a954b53878022ea22916db95faf2a6e79bc694f7c68995c737c78a8714a89 AS rootfs
 ARG TW_SNAPSHOT_AARCH64
