@@ -30,7 +30,7 @@ variables:
   # (container-scanning CS_EXPECTED_OS).
   CS_EXPECTED_OS: opensuse-tumbleweed
   # renovate: datasource=gitlab-packages depName=yasrt/cli packageName=yasrt/cli:yasrt
-  YASRT_VERSION: "1.14.5"
+  YASRT_VERSION: "1.14.6"
   CURL_IMAGE: registry.ole-hartwig.eu/devops/images/curl:8.21
 
 include:
