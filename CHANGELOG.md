@@ -1,3 +1,10 @@
+## [1.5.111](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.110...1.5.111) (2026-11-04)
+
+### :repeat: Chores
+
+* **deps:** update dependency yasrt/cli to v1.14.6 ([70290af](https://git.ole-hartwig.eu/devops/images/yasrt/commit/70290af91189d3a69e3ef26d18ca31646255c182))
+* **deps:** update registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1 docker digest to a3fbccd ([adbc082](https://git.ole-hartwig.eu/devops/images/yasrt/commit/adbc0821022d8312810ab0c9bca149d97ad9c80a))
+
 ## [1.5.110](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.109...1.5.110) (2026-11-04)
 
 ### :repeat: Chores
