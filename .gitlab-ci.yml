@@ -13,6 +13,16 @@
 # nobody declared stops the pipeline from being created at all. `fetch` and
 # `verify` are this repository's own: the try-build cannot run in .pre,
 # because the binary is fetched, not vendored, and .pre precedes the fetch.
+#
+# The binary is checked against a SHA256SUMS whose signature has been
+# verified first (verify:artifact:SHA256SUMS). Until 2026-11 fetch:binary ran
+# `sha256sum -c` against a manifest fetched from the same package as the
+# binary and never read SHA256SUMS.sig, so whoever could write a generic
+# package of yasrt/cli wrote both files (security review AUD-043, F02,
+# improvement register I-557; the I-311 pattern of pod-cert-signer).
+# cosign.pub in this repository is the public half of the release-signing KMS
+# key yasrt/cli signs its manifest with, pinned in git so that this image's
+# trust anchor changes by merge request and not by editing a CI variable.
 stages: [release, fetch, verify, build, test, sign]
 
 variables:
@@ -24,6 +34,28 @@ variables:
   CURL_IMAGE: registry.ole-hartwig.eu/devops/images/curl:8.21
 
 include:
+  # Verifies SHA256SUMS.sig against cosign.pub, then the arm64 binary against
+  # the verified manifest. fetch:binary delivers the files (needs mode), so the
+  # build only ever sees what this job verified and re-published as dist/.
+  # Rejects (exit 1) an unsigned release, a signature by another key or an
+  # edited manifest; a file it was not given is exit 1 as well.
+  - component: ${CI_SERVER_HOST}/devops/ci-cd-components/build-provenance/verify-artifact@3
+    inputs:
+      stage: fetch
+      artifact-dir: dist
+      signed-file: SHA256SUMS
+      artifact-files: yasrt-linux-arm64
+      pub-key-file: cosign.pub
+      needs-config:
+        - fetch:binary
+      rules-config:
+        - if: $CI_PIPELINE_SOURCE == "schedule"
+          when: never
+        - if: $CI_COMMIT_TAG
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+        - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+        - when: never
+
   # Re-scan the published image daily. A scan is otherwise only as old as the
   # last build, and this image is rebuilt only when the binary or the base
   # changes -- while trivy's advisory database rolls about every six hours.
@@ -89,32 +121,30 @@ fetch:binary:
     # bucket, and without it curl writes the redirect body into the file. The
     # first run did exactly that and produced a "This resource has been moved
     # temporarily" file where the binary should have been.
+    # SHA256SUMS.sig with it: verify:artifact:SHA256SUMS checks the signature
+    # first and only then the binary against the manifest. Nothing here is
+    # trusted yet; this job only downloads.
     - |
-      for f in yasrt-linux-arm64 SHA256SUMS; do
+      for f in yasrt-linux-arm64 SHA256SUMS SHA256SUMS.sig; do
         curl --fail-with-body --silent --show-error --location \
           --header "JOB-TOKEN: ${CI_JOB_TOKEN}" \
           --output "$f" "${PACKAGE_URL}/${f}" || exit 1
       done
-    # Verify before packaging: an unverified download is a supply-chain hole,
-    # and the manifest is published alongside the binaries for exactly this.
-    # Verify before packaging. This also catches a download that silently
-    # returned something other than the binary, which is how the redirect
-    # problem above announced itself.
-    - grep 'yasrt-linux-arm64$' SHA256SUMS > SHA256SUMS.arm64
-    - sha256sum -c SHA256SUMS.arm64
     - chmod 0755 yasrt-linux-arm64
   artifacts:
     paths: [dist/]
     expire_in: 1 day
 
+# Both build from dist/ as verify:artifact:SHA256SUMS published it, never
+# from fetch:binary's unverified download.
 verify:containerfile:$CI_REGISTRY_IMAGE:
-  needs: [fetch:binary]
+  needs: [verify:artifact:SHA256SUMS]
 
 build:buildkit:image:$CI_REGISTRY_IMAGE:
   # `version` is listed so its dotenv (RELEASE_STATUS, RELEASE_TAG) reaches
   # this job: a `needs` list restricts artefacts to what it names.
   needs:
-    - job: fetch:binary
+    - job: verify:artifact:SHA256SUMS
     - job: version
       artifacts: true
       optional: true

@@ -42,8 +42,13 @@ state.
 ## Security
 
 The binary is fetched with a job token — `yasrt/cli` lists this project on its
-job-token allowlist, so no long-lived credential is involved — and verified
-against the published `SHA256SUMS` before it is packaged. The image is signed
+job-token allowlist, so no long-lived credential is involved — together with
+that release's `SHA256SUMS` and `SHA256SUMS.sig`. The signature is verified
+against `cosign.pub`, the public half of the estate's release-signing KMS key,
+pinned in this repository, and only a manifest that verified is used to check
+the binary (`build-provenance/verify-artifact`). An unsigned release, or one
+signed by another key, is not packaged. A key rotation changes `cosign.pub` by
+merge request. The image is signed
 with cosign and carries a CycloneDX SBOM attestation, both inherited from
 `buildkit-image-build`.
 
