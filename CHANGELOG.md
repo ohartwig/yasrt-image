@@ -1,3 +1,13 @@
+## [1.5.112](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.111...1.5.112) (2026-11-05)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8.7.1 docker digest to c171563 ([ac7c6ad](https://git.ole-hartwig.eu/devops/images/yasrt/commit/ac7c6ad2bbc10ddcca5c94ad9ff89d2588bc4349))
+
+### :repeat: Chores
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1 docker digest to 6c4431f ([fc239e5](https://git.ole-hartwig.eu/devops/images/yasrt/commit/fc239e535be41d610195fb1e81c6f908a98e1f4f))
+
 ## [1.5.111](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.110...1.5.111) (2026-11-04)
 
 ### :repeat: Chores
