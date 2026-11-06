@@ -1,3 +1,13 @@
+## [1.5.121](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.120...1.5.121) (2026-11-06)
+
+### :repeat: Continuous Integrations
+
+* **scanning:** follow the analyzer's rolling major tag 8 ([e92768d](https://git.ole-hartwig.eu/devops/images/yasrt/commit/e92768d02fe4e881ddf94c5642e76c4cd8b1b13a))
+
+### :repeat: Chores
+
+* **deps:** update dependency aarch64 to v20261106 ([7894d34](https://git.ole-hartwig.eu/devops/images/yasrt/commit/7894d34259c5f9b52dce8dee430c654854d08415))
+
 ## [1.5.120](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.119...1.5.120) (2026-11-06)
 
 ### :repeat: Chores
