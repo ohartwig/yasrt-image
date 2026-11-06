@@ -1,3 +1,13 @@
+## [1.5.122](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.121...1.5.122) (2026-11-06)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8 docker digest to c6578a1 ([0e92386](https://git.ole-hartwig.eu/devops/images/yasrt/commit/0e923861b3a0e952c8b3b2be159b194e3c185ee3))
+
+### :repeat: Chores
+
+* **deps:** update snapshots ([6204f34](https://git.ole-hartwig.eu/devops/images/yasrt/commit/6204f34cfe1ecd5154410edce204e4c797c877fb))
+
 ## [1.5.121](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.120...1.5.121) (2026-11-06)
 
 ### :repeat: Continuous Integrations
