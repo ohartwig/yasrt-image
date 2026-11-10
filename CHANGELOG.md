@@ -1,3 +1,14 @@
+## [1.5.145](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.144...1.5.145) (2026-11-10)
+
+### :bug: Fixes
+
+* **ci:** pin the fetch:binary job image by tag and digest ([7fbdb7e](https://git.ole-hartwig.eu/devops/images/yasrt/commit/7fbdb7eb760f041d168e2d1dfdef26109c2a75c4))
+
+### :repeat: Chores
+
+* **deps:** update dependency aarch64 to v20261110.1794301197-03527639 ([ab72839](https://git.ole-hartwig.eu/devops/images/yasrt/commit/ab7283984e9b0be082e798b62da5be7a27acae9e))
+* **deps:** update registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1 docker digest to e59da04 ([b63dec0](https://git.ole-hartwig.eu/devops/images/yasrt/commit/b63dec0c336b2722d34565d2560e1ab9ce8bc0a5))
+
 ## [1.5.144](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.143...1.5.144) (2026-11-10)
 
 ### :repeat: Continuous Integrations
