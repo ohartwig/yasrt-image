@@ -31,7 +31,6 @@ variables:
   CS_EXPECTED_OS: opensuse-tumbleweed
   # renovate: datasource=gitlab-packages depName=yasrt/cli packageName=yasrt/cli:yasrt
   YASRT_VERSION: "1.14.6"
-  CURL_IMAGE: registry.ole-hartwig.eu/devops/images/curl:8.21
 
 include:
   # Verifies SHA256SUMS.sig against cosign.pub, then the arm64 binary against
@@ -100,7 +99,9 @@ include:
 
 fetch:binary:
   stage: fetch
-  image: $CURL_IMAGE
+  # Tag and digest: the bot's gitlabci manager reads a literal `image:` and moves
+  # both (AUD-088-F13); a variable would be invisible to it.
+  image: registry.ole-hartwig.eu/devops/images/curl:2.4.110@sha256:30bdd5c692e2c2ce8b8f62289ab4629e110bba5f4fc7d422ba270f12d8a939e9
   # Also on the default branch and on merge requests, not only on tags:
   # verify:containerfile builds the Containerfile for real and needs the binary
   # in the context exactly as the tag build does.
