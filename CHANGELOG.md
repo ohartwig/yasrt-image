@@ -1,3 +1,10 @@
+## [1.5.147](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.146...1.5.147) (2026-11-10)
+
+### :bug: Fixes
+
+* **ci:** add the hashes of the pinned git-filter-repo ([8afcf14](https://git.ole-hartwig.eu/devops/images/yasrt/commit/8afcf14dcd185b2265f60f7c14655261004983f9))
+* **ci:** pin git-filter-repo in the GitHub mirror job by version and hash ([277ffca](https://git.ole-hartwig.eu/devops/images/yasrt/commit/277ffca74456475d82b97d3503273ac1bb9149e4))
+
 ## [1.5.146](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.145...1.5.146) (2026-11-10)
 
 ### :repeat: Chores
