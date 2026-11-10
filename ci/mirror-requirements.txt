@@ -1,0 +1,12 @@
+# Exact, hash-pinned tool for the mirror:github job (pip --require-hashes).
+# The job holds GITHUB_MIRROR_TOKEN, so what it installs must not be chosen at
+# run time. git-filter-repo is a single pure-Python package without
+# dependencies. Regenerate after changing the version:
+#
+#   printf 'git-filter-repo==<version>\n' > /tmp/in.txt
+#   uv pip compile --generate-hashes --no-header /tmp/in.txt -o ci/mirror-requirements.txt
+#
+# (keep this header).
+git-filter-repo==2.47.0 \
+    --hash=sha256:2cd04929b9024e83e65db571cbe36aec65ead0cb5f9ec5abe42158654af5ad83 \
+    --hash=sha256:411b27e68a080c07a69c233cb526dbc2d848b09a72f10477f4444dd0822cf290
