@@ -1,3 +1,16 @@
+## [1.5.154](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.153...1.5.154) (2026-11-11)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/curl docker tag to v2.4.116 ([884b89e](https://git.ole-hartwig.eu/devops/images/yasrt/commit/884b89ed1ea6fd0dffe7db3c44ac1e0e6d7095ff))
+* **deps:** update registry.ole-hartwig.eu/devops/images/curl docker tag to v2.4.115 ([11497cd](https://git.ole-hartwig.eu/devops/images/yasrt/commit/11497cd946b36849fa912010785df5032f04311a))
+
+### :repeat: Chores
+
+* **deps:** update snapshots ([41efd99](https://git.ole-hartwig.eu/devops/images/yasrt/commit/41efd99adc2a5c1001f452e93ccc94de54aa8d8e))
+* **deps:** update registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1 docker digest to 3fb68bb ([9322e38](https://git.ole-hartwig.eu/devops/images/yasrt/commit/9322e38f5c72be8f371ace9f3dea0e271dfde8d7))
+* **deps:** update dependency aarch64 to v20261111 ([b3263d8](https://git.ole-hartwig.eu/devops/images/yasrt/commit/b3263d8bdb3c4d2641d48cdf65c55bbaa844211e))
+
 ## [1.5.153](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.152...1.5.153) (2026-11-11)
 
 ### :repeat: Continuous Integrations
