@@ -30,7 +30,7 @@ variables:
   # (container-scanning CS_EXPECTED_OS).
   CS_EXPECTED_OS: opensuse-tumbleweed
   # renovate: datasource=gitlab-packages depName=yasrt/cli packageName=yasrt/cli:yasrt
-  YASRT_VERSION: "1.14.6"
+  YASRT_VERSION: "1.14.7"
 
 include:
   # Verifies SHA256SUMS.sig against cosign.pub, then the arm64 binary against
