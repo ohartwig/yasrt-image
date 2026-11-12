@@ -21,7 +21,7 @@ ARG TW_SNAPSHOT_AARCH64=20261108.1794358585-9c6c4032
 # renovate: datasource=custom.koh-snapshot depName=aarch64
 ARG KOH_SNAPSHOT_AARCH64=20261112.1794463045-b6f7dd6f
 
-FROM registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1@sha256:9b2a5bbe44edd90d83cf96a2777fdecaca8f2896d3265407bf9c3e30da1d126b AS rootfs
+FROM registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1@sha256:52f2f0a8a3c8d9a2f13a4562b337d25dbce6a3a3739ea2ed54a4798dcb8ba649 AS rootfs
 ARG TW_SNAPSHOT_AARCH64
 ARG KOH_SNAPSHOT_AARCH64
 # @userland is bash as /bin/sh and the GNU tools; openssh-clients brings
