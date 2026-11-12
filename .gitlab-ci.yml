@@ -156,7 +156,7 @@ build:buildkit:image:$CI_REGISTRY_IMAGE:
     - when: never
 
 container_scanning:
-  image: registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8@sha256:4a1f90cbdd3ca0cb735cdff1290f6565726a781bfd1634b8b8ac6a809f02ccd7
+  image: registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8@sha256:bfb09c542d89e5e3407a5dc964a56195f914dbfca71475ebfa8aae5be1238065
   variables:
     TRIVY_DB_REPOSITORY: registry.ole-hartwig.eu/devops/ci-mirrors/trivy-db
     TRIVY_JAVA_DB_REPOSITORY: registry.ole-hartwig.eu/devops/ci-mirrors/trivy-java-db
