@@ -101,7 +101,7 @@ fetch:binary:
   stage: fetch
   # Tag and digest: the bot's gitlabci manager reads a literal `image:` and moves
   # both (AUD-088-F13); a variable would be invisible to it.
-  image: registry.ole-hartwig.eu/devops/images/curl:2.4.123@sha256:88358b113bba84d0c10e177e38c426c92eff1db2e7fa9cb4bb8cffa6f09ba2ab
+  image: registry.ole-hartwig.eu/devops/images/curl:2.4.124@sha256:e72fc9a73e8231ed8f5217ba49f2655ac1feae2b4e9efed4eee28379c1c676ea
   # Also on the default branch and on merge requests, not only on tags:
   # verify:containerfile builds the Containerfile for real and needs the binary
   # in the context exactly as the tag build does.
