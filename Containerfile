@@ -17,11 +17,11 @@
 # One snapshot pin per architecture, moved by pinup
 # (custom.tumbleweed-snapshot), is the only package pin.
 # renovate: datasource=custom.tumbleweed-snapshot depName=aarch64
-ARG TW_SNAPSHOT_AARCH64=20261108.1794358586-49098877
+ARG TW_SNAPSHOT_AARCH64=20261108.1794431695-41b8580d
 # renovate: datasource=custom.koh-snapshot depName=aarch64
-ARG KOH_SNAPSHOT_AARCH64=20261112.1794494797-bd8ae6ec
+ARG KOH_SNAPSHOT_AARCH64=20261112.1794506194-b8e2f95f
 
-FROM registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1@sha256:c1cf71db059f45be65717ea5b1f5641eb1ffb8960218ec8ebf8e97cebdc896bd AS rootfs
+FROM registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1@sha256:152caff66901d7fc4b9d4e2f67a0fd1156d4f1033e66a9346b655f5f7f02d821 AS rootfs
 ARG TW_SNAPSHOT_AARCH64
 ARG KOH_SNAPSHOT_AARCH64
 # @userland is bash as /bin/sh and the GNU tools; openssh-clients brings
