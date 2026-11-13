@@ -1,3 +1,14 @@
+## [1.5.170](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.169...1.5.170) (2026-11-13)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/curl docker tag to v2.4.141 ([90ed549](https://git.ole-hartwig.eu/devops/images/yasrt/commit/90ed549db307daeda0f9dea315579b6ba9566040))
+* **deps:** update registry.ole-hartwig.eu/devops/images/curl docker tag to v2.4.140 ([3ed8fc6](https://git.ole-hartwig.eu/devops/images/yasrt/commit/3ed8fc6e1ac97538ffaa18b7409789de2a5bd0bd))
+
+### :repeat: Chores
+
+* **deps:** update snapshots ([9fdfecd](https://git.ole-hartwig.eu/devops/images/yasrt/commit/9fdfecd9cbc9b99b509bb0bfc442d38d41293260))
+
 ## [1.5.169](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.168...1.5.169) (2026-11-13)
 
 ### :repeat: Continuous Integrations
