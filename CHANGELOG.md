@@ -1,3 +1,9 @@
+## [1.5.168](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.166...1.5.168) (2026-11-13)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/curl docker tag to v2.4.137 ([ba5d75c](https://git.ole-hartwig.eu/devops/images/yasrt/commit/ba5d75c3e80babc24ff181d7f34a1b220e2b0a45))
+
 ## [1.5.167](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.166...1.5.167) (2026-11-13)
 
 ### :repeat: Continuous Integrations
