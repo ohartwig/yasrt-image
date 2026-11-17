@@ -1,3 +1,14 @@
+## [1.5.188](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.187...1.5.188) (2026-11-17)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/curl docker tag to v2.4.163 ([6e59983](https://git.ole-hartwig.eu/devops/images/yasrt/commit/6e59983fe5825be7a40d55e5c4c63ccbbfed8f9c))
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8 docker digest to e618fbe ([009dca0](https://git.ole-hartwig.eu/devops/images/yasrt/commit/009dca0c402cfd2018c960ece8dec8afa2dc414d))
+
+### :repeat: Chores
+
+* **deps:** update dependency aarch64 to v20261116.1794860505-705a760fa1f42b8fcef60850c9dae75bef2527f54bcc91988546e6ed4be9fc28 ([289286b](https://git.ole-hartwig.eu/devops/images/yasrt/commit/289286bea583a0a917e1d4f90a4561d59d8559ec))
+
 ## [1.5.187](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.186...1.5.187) (2026-11-16)
 
 ### :repeat: Continuous Integrations
