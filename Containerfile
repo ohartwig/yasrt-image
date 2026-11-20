@@ -19,7 +19,7 @@
 # renovate: datasource=custom.tumbleweed-snapshot depName=aarch64
 ARG TW_SNAPSHOT_AARCH64=20261117.1795100969-e1e25851-6d8645fb0b2a7d7bbfe73b8f0515c54b98a9c9ee6fc8a2b7fd471a85d32f2e26
 # renovate: datasource=custom.koh-snapshot depName=aarch64
-ARG KOH_SNAPSHOT_AARCH64=20261119.1795122814-36c18a2f2ddceb01b8a013a958b8a4fb6a5549ae4120b48e3916df7f735ea129
+ARG KOH_SNAPSHOT_AARCH64=20261120.1795137954-5d5b31309b4197d74d579f3375a4936e8e2ed4cf9c2cea4d62d03454d34e5455
 
 FROM registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1@sha256:57e6b07c075508477d9a0eb2b97ad3f3759b1077a54b8cd7d8ba85cfa0013971 AS rootfs
 ARG TW_SNAPSHOT_AARCH64
