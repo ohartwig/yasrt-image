@@ -1,3 +1,9 @@
+## [1.5.251](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.250...1.5.251) (2026-11-23)
+
+### :repeat: Chores
+
+* **deps:** update dependency yasrt/cli to v1.14.9 ([46038ad](https://git.ole-hartwig.eu/devops/images/yasrt/commit/46038adeebdb89c1466d613fe5ac507e7c33832c))
+
 ## [1.5.250](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.249...1.5.250) (2026-11-23)
 
 ### :repeat: Continuous Integrations
