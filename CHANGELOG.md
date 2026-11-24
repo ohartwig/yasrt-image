@@ -1,3 +1,13 @@
+## [1.5.254](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.253...1.5.254) (2026-11-24)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/curl docker tag to v2.4.248 ([2b1280b](https://git.ole-hartwig.eu/devops/images/yasrt/commit/2b1280befc08c105bd422338bc7798741330ed2c))
+
+### :repeat: Chores
+
+* **deps:** update registry.ole-hartwig.eu/devops/images/tumbleweed-builder:1 docker digest to 951efaf ([aacb99d](https://git.ole-hartwig.eu/devops/images/yasrt/commit/aacb99d61f4b14b86048cfb8df4fb0db7c81c2a8))
+
 ## [1.5.253](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.252...1.5.253) (2026-11-24)
 
 ### :repeat: Continuous Integrations
