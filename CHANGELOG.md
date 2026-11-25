@@ -1,3 +1,9 @@
+## [1.5.272](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.271...1.5.272) (2026-11-25)
+
+### :repeat: Chores
+
+* **deps:** update dependency aarch64 to v20261125.1795640248-c28d4722888e6fb9ed7adae6ed146ee81f33e67ceaeb5094da769897a70a2e3e ([1fc6724](https://git.ole-hartwig.eu/devops/images/yasrt/commit/1fc67249b5d09218f5de725994f7ac3e7bafa69f))
+
 ## [1.5.271](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.270...1.5.271) (2026-11-25)
 
 ### :repeat: Chores
