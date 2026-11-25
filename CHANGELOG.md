@@ -1,3 +1,13 @@
+## [1.5.265](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.264...1.5.265) (2026-11-25)
+
+### :repeat: Continuous Integrations
+
+* **deps:** update registry.ole-hartwig.eu/devops/ci-mirrors/container-scanning:8 docker digest to 9f3111f ([e443a79](https://git.ole-hartwig.eu/devops/images/yasrt/commit/e443a79ee273bbce459282f841fc2ba2cc4f8b78))
+
+### :repeat: Chores
+
+* **deps:** update dependency aarch64 to v20261125 ([0ce43aa](https://git.ole-hartwig.eu/devops/images/yasrt/commit/0ce43aa56fa8966d79585e30a5decc754c0707c6))
+
 ## [1.5.264](https://git.ole-hartwig.eu/devops/images/yasrt/compare/1.5.263...1.5.264) (2026-11-25)
 
 ### :repeat: Chores
